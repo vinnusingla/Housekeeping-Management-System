@@ -26,7 +26,7 @@ def login_user(request):
 def main(request):
     if request.user.is_authenticated():
         context = {'username': request.user}
-        return render(request, 'login/success1.html', context)
+        return render(request, 'login/main.html', context)
     else:
         return redirect('http://127.0.0.1:8000/login/')
 
@@ -56,14 +56,17 @@ def register(request):
     return render(request, 'login/register.html', context)
 
 def addComplaint(request):
-    form=AddComplaintForm(request.POST or None)
-    if form.is_valid():
-        comp=Complaint()
-        comp.subject=request.POST['subject']
-        comp.user=request.user
-        comp.save()
-    context ={"form":form}
-    return  render(request ,'login/complaint.html',context)
+    if request.user.is_authenticated():
+        form = AddComplaintForm(request.POST or None)
+        if form.is_valid():
+            comp = Complaint()
+            comp.subject = request.POST['subject']
+            comp.user = request.user
+            comp.save()
+        context = {"form": form}
+        return render(request, 'login/complaint.html', context)
+    else:
+        return redirect('http://127.0.0.1:8000/login/')
 
 def UpdateComplaint(request):
     form=AddComplaintForm(request.POST or None)
