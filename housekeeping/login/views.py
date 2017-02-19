@@ -64,7 +64,7 @@ def addComplaint(request):
             comp.user = request.user
             comp.save()
         context = {"form": form}
-        return render(request, 'login/complaint.html', context)
+        return render(request, 'login/make_complaint.html', context)
     else:
         return redirect('http://127.0.0.1:8000/login/')
 
