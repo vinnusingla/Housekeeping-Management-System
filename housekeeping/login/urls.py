@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
     url(r'^register/$', views.register, name='register'),
     url(r'^addComplaint/$', views.addComplaint, name='addComplaint'),
+    url(r'^complaints/$', views.complaints, name='complaints'),
     url(r'^main/$', views.main, name='main'),
 ]

@@ -68,6 +68,14 @@ def addComplaint(request):
     else:
         return redirect('http://127.0.0.1:8000/login/')
 
+def complaints(request):
+    if request.user.is_authenticated():
+        list=Complaint.objects.filter(user=request.user)
+        context={"list":list}
+        return render(request, 'login/complaints.html',context)
+    else:
+        return redirect('http://127.0.0.1:8000/login/')
+
 def UpdateComplaint(request):
     form=AddComplaintForm(request.POST or None)
     if form.is_valid():

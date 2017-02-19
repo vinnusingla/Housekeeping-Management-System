@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 class Complainee(models.Model):
-    user = models.ForeignKey(User,related_name='+',null=True)
+    user = models.OneToOneField(User,related_name='complainee',null=True)
     room_no = models.CharField(max_length=15, blank=True)
     mobile_no = models.CharField(max_length=15, blank=True)
 
