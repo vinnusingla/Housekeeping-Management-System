@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Complainee
+from .models import Complainee,Complaint
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -19,3 +20,14 @@ class ComplaineeForm(forms.ModelForm):
     class Meta:
         model = Complainee
         fields = ('room_no', 'mobile_no')
+
+class AddComplaintForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ('subject',)
+
+class UpdateComplaintForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ('subject', 'feedback')
+
