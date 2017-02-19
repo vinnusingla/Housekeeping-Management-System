@@ -1,6 +1,14 @@
 from django.contrib import admin
-
-# Register your models here.
 from  .models import Complainee,Complaint
+
+class ComplaintAdmin(admin.ModelAdmin):
+    list_display = ('status', 'id', 'subject','lodge_date')
+    search_fields = ('status', 'id')
+    list_filter = ('lodge_date',)
+    date_hierarchy = 'lodge_date'
+    ordering = ('-lodge_date',)
+    #fields = ('user', 'id', 'subject','status','subject','feedback','addressing_date')
+
+
 admin.site.register(Complainee)
-admin.site.register(Complaint)
+admin.site.register(Complaint,ComplaintAdmin)

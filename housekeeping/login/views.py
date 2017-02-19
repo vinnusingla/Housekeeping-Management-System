@@ -36,7 +36,7 @@ def logout_user(request):
     context = {
         "form": form,
     }
-    return redirect('http://127.0.0.1:8000/login/login_user/')
+    return redirect('http://127.0.0.1:8000/login/')
 
 def register(request):
     form = RegForm(request.POST or None)
@@ -48,7 +48,7 @@ def register(request):
         user.save()
         p = Complainee(room_no=request.POST['room_no'], mobile_no=request.POST['mobile_no'],user=user)
         p.save()
-        return render(request, 'login/success.html')
+        return redirect('http://127.0.0.1:8000/login/')
     context = {
         "form": form,
         "pform":pform,
