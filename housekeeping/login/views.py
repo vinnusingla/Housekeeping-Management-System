@@ -1,9 +1,7 @@
-from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404 ,redirect
+from django.shortcuts import render, get_object_or_404 ,redirect,Http404
 from .models import Complainee,Complaint
 from .forms import UserForm,RegForm,ComplaineeForm,AddComplaintForm,UpdateComplaintForm
 
@@ -76,12 +74,9 @@ def complaints(request):
     else:
         return redirect('http://127.0.0.1:8000/login/')
 
-def UpdateComplaint(request):
-    form=AddComplaintForm(request.POST or None)
-    if form.is_valid():
-        comp=Complaint()
-        comp.subject=request.POST['subject']
-        comp.user=request.user
-        comp.save()
-    context ={"form":form}
-    return  render(request ,'login/complaint.html',context)
+def updateComplaint(request , offset):
+    try:
+        offset = int(offset)
+    except ValueError:
+        raise Http404()
+    return  render(request ,'login/success.html')

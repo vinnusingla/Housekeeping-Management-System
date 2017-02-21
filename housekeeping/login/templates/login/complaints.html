@@ -32,7 +32,8 @@
                     <td>{{a.lodge_date}}</td>
                     <td>{{a.addressing_date}}</td>
                     <td>
-                        <button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Select</button>
+                        <a href="{% url 'login:updateComplaint' a.id %}"><button type="button" id="{{a.id}}" class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-ok"></span> Select</button></a>
                     </td>
                 </tr>
 {%endfor%}

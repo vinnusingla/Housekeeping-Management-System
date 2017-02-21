@@ -1,6 +1,4 @@
 from django.conf.urls import url,include
-from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
 from . import views
 
 
@@ -13,5 +11,6 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^addComplaint/$', views.addComplaint, name='addComplaint'),
     url(r'^complaints/$', views.complaints, name='complaints'),
+    url(r'^updateComplaint/(\d+)/$', views.updateComplaint, name='updateComplaint'),
     url(r'^main/$', views.main, name='main'),
 ]
