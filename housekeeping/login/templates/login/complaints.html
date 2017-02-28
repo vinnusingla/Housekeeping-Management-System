@@ -32,8 +32,13 @@
                     <td>{{a.lodge_date}}</td>
                     <td>{{a.addressing_date}}</td>
                     <td>
-                        <a href="{% url 'login:updateComplaint' a.id %}"><button type="button" id="{{a.id}}" class="btn btn-success btn-sm">
-                            <span class="glyphicon glyphicon-ok"></span> Select</button></a>
+                        {% if a.status == "Closed" %}
+                        <a href="{% url 'login:reopenComplaint' a.id %}">
+                        <button type="button" id="{{a.id}}" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-ok"></span> Re-open
+                        </button>
+                        </a>
+                        {%endif%}
                     </td>
                 </tr>
 {%endfor%}
@@ -44,7 +49,7 @@
     <hr>
     </div>
 <script>
-    $("#search").on("keyup", function() {
+    $("#search").on("keyup", function searchComplaint() {
    var key = this.value;
     $(".tosearch").each(function() {
        var $this = $(this);

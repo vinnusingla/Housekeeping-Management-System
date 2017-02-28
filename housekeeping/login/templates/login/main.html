@@ -1,6 +1,6 @@
 {% extends 'login/base.html' %}
 {% block body %}
-
+{% load staticfiles %}
 <body>
 
     <!-- Navigation -->
@@ -8,33 +8,25 @@
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Portfolio Item Heading -->
-        <div class="row voffset5">
-            <div class="col-lg-12">
-                <h1 class="page-header">Welcome <small>{{username}}</small></h1>
-            </div>
-        </div>
         <!-- Portfolio Item Row -->
-        <div class="row">
+        <div class="row voffset6">
 
             <div class="col-md-8">
-                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                <img class="img-responsive" src= "{%static 'login/Resources/Image/main.jpg'%}">
             </div>
 
             <div class="col-md-4">
-                <div class="row">
-                    <h3>Website Description</h3>
-                    <p>In modern Web applications, the arbitrary logic often involves interacting with a database. Behind the scenes,
-                    a database-driven Web site connects to a database server, retrieves some data out of it, and displays that data
-                    on a Web page. The site might also provide ways for site visitors to populate the database on their own.</p>
-                </div>
-                <div class="row">
-                    <h3>Main Functionalities</h3>
+                <div class="row"><h2 class="page-header">Welcome {{username}}</h2></div>
+                <div class="row voffset3">
                     <ul>
-                        <li>Lodge Complaint</li>
-                        <li>Check Status</li>
-                        <li>Give Feedback</li>
-                        <li>Reopen Complaint</li>
+                        <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i><li><h4><b>Lodge Complaint</b></h4></li>
+                        <p>Just enter the subject of your complain and register your complaint</p>
+                        <li><h4><b>Check Status</h4></b></li>
+                        <p>No need to walk through or call to know the progress status of your complaint</p>
+                        <li><h4><b>Give Feedback</h4></b></li>
+                        <p>Not Happy? oh wait! tell us why?</p>
+                        <li><h4><b>Reopen Complaint</b></h4></li>
+                        <p>Not satisfied? Just re-open!</p>
                     </ul>
                 </div>
             </div>

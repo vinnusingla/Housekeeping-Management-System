@@ -1,0 +1,62 @@
+{% extends 'login/base.html' %}
+{% block body %}
+
+
+<body >
+<!-- Navigation -->
+    <div class="container">
+    <div class="card-header voffset8">
+        <h2>Tasks</h2>
+       <!-- <h4 class="voffset3">Search: <input id='search'></input></h4>-->
+    </div>
+    <hr>
+        <div class="card-block p-0" style="background-color: #eee">
+            <table class="table table-bordered table-sm m-0">
+                <thead class="">
+                    <tr>
+                        <th>id</th>
+                        <th>Status</th>
+                        <th>Subject</th>
+                        <th>Lodge Date</th>
+                        <th>Name</th>
+                        <th>Room No.</th>
+                        <th>Mobile No.</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+{%for a,b in list_new%}
+                <tr class="tosearch">
+                    <td>{{a.id}}</td>
+                    <td>{{a.status}}</td>
+                    <td>{{a.subject}}</td>
+                    <td>{{a.lodge_date}}</td>
+                    <td>{{b.first_name}} {{b.last_name}}</td>
+                    <td>{{b.room_no}}</td>
+                    <td>{{b.mobile_no}}</td>
+                    <td></td>                   
+                </tr>
+{%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <td>
+            <button class="btn btn-primary"  onclick="Print()" >Print</button>
+        </td>
+    <hr>
+    </div>
+<script>
+    $("#search").on("keyup", function searchComplaint() {
+   var key = this.value;
+    $(".tosearch").each(function() {
+       var $this = $(this);
+       $this.toggle($(this).text().indexOf(key) >= 0);
+    });
+});
+    function Print()
+    {
+        window.print();
+    }
+</script>
+</body>
+{%endblock%}

@@ -1,0 +1,56 @@
+{% extends 'login/base.html' %}
+{% block body %}
+
+
+<body >
+<!-- Navigation -->
+    {% include 'login/nav_staff.html' %}
+    <div class="container">
+    <div class="card-header voffset8">
+        <h2>All Complaints</h2>
+        <h4 class="voffset3">Search: <input id='search'></input></h4>
+    </div>
+    <hr>
+        <div class="card-block p-0" style="background-color: #eee">
+            <table class="table table-bordered table-sm m-0">
+                <thead class="">
+                    <tr>
+                        <th>id</th>
+                        <th>Status</th>
+                        <th>Subject</th>
+                        <th>Lodge Date</th>
+                        <th>Tenative Addressing Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+{%for a in list%}
+                <tr class="tosearch">
+                    <td>{{a.id}}</td>
+                    <td>{{a.status}}</td>
+                    <td>{{a.subject}}</td>
+                    <td>{{a.lodge_date}}</td>
+                    <td>{{a.addressing_date}}</td>
+                    <td>
+                        <a href="{% url 'login:updateComplaint_staff' a.id %}"><button type="button" id="{{a.id}}" class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-ok"></span> Select</button></a>
+                    </td>
+                </tr>
+{%endfor%}
+                </ul>
+            </tbody>
+            </table>
+        </div>
+    <hr>
+    </div>
+<script>
+    $("#search").on("keyup", function searchComplaint() {
+   var key = this.value;
+    $(".tosearch").each(function() {
+       var $this = $(this);
+       $this.toggle($(this).text().indexOf(key) >= 0);
+    });
+});
+</script>
+</body>
+{%endblock%}

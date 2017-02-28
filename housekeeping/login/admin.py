@@ -1,5 +1,5 @@
 from django.contrib import admin
-from  .models import Complainee,Complaint
+from  .models import Complainee,Complaint,Admin
 
 class ComplaintAdmin(admin.ModelAdmin):
     list_display = ('status', 'id', 'subject','lodge_date')
@@ -11,4 +11,5 @@ class ComplaintAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Complainee)
+admin.site.register(Admin)
 admin.site.register(Complaint,ComplaintAdmin)

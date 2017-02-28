@@ -26,8 +26,16 @@ class AddComplaintForm(forms.ModelForm):
         model = Complaint
         fields = ('subject',)
 
-class UpdateComplaintForm(forms.ModelForm):
+class feedbackForm(forms.ModelForm):
     class Meta:
         model = Complaint
-        fields = ('subject', 'feedback')
+        fields = ('feedback',)
+class UpdateComplaint_staffForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ('status', 'addressing_date',)
+class SelectDateForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields= ('addressing_date',)
 

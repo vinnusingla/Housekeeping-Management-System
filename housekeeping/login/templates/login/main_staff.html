@@ -1,0 +1,46 @@
+{% extends 'login/base.html' %}
+{% block body %}
+{% load staticfiles %}
+<body>
+
+    <!-- Navigation -->
+    {% include 'login/nav_staff.html' %}
+    <div class="container">
+
+        <!-- Portfolio Item Row -->
+        <div class="row voffset6">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src= "{%static 'login/Resources/Image/main.jpg'%}">
+            </div>
+
+            <div class="col-md-4">
+                <div class="row"><h2 class="page-header">Welcome {{username}}</h2></div>
+                <div class="row voffset3">
+                    <ul>
+                        <li><h4><b>Update Complaint</b></h4></li>
+                        <p>Update the addressing date and the progress status of any complaint</p>
+                        <li><h4><b>View Complaints</h4></b></li>
+                        <p>View all the registered complaints and their details</p>
+                        <li><h4><b>Print Tasks</h4></b></li>
+                        <p>Print all the complaints to be serviced on a day</p>
+                        <li><h4><b>Flush Complaints</b></h4></li>
+                        <p>Remove all complaints registered before a week</p>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Singla&Shukla 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+{% endblock %}
