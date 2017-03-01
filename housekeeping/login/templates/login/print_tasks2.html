@@ -1,13 +1,20 @@
 {% extends 'login/base.html' %}
 {% block body %}
 
+<script type="text/javascript">
+    function Print()
+    {
+    	variable=document.getElementById('print')
+    	variable.style.display="None"
+        window.print();
+    }
+</script>
 
 <body >
 <!-- Navigation -->
     <div class="container">
     <div class="card-header voffset8">
         <h2>Tasks</h2>
-       <!-- <h4 class="voffset3">Search: <input id='search'></input></h4>-->
     </div>
     <hr>
         <div class="card-block p-0" style="background-color: #eee">
@@ -41,22 +48,9 @@
             </table>
         </div>
         <td>
-            <button class="btn btn-primary"  onclick="Print()" >Print</button>
+            <button class="btn btn-primary" id="print" onclick="Print()" >Print</button>
         </td>
     <hr>
     </div>
-<script>
-    $("#search").on("keyup", function searchComplaint() {
-   var key = this.value;
-    $(".tosearch").each(function() {
-       var $this = $(this);
-       $this.toggle($(this).text().indexOf(key) >= 0);
-    });
-});
-    function Print()
-    {
-        window.print();
-    }
-</script>
 </body>
 {%endblock%}
