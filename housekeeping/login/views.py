@@ -26,11 +26,13 @@ def Login(request):
 
 
 def generateToDoList(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and request.user.is_superuser:
         form = SelectDateForm(request.POST or None)
         if form.is_valid():
             list = Complaint.objects.filter(addressing_date =request.POST['addressing_date'])
             List=[]
+            if not list:
+                return render(request, 'login/noJob.html')
             for li in list:
                 usern=li.user.username
                 Comp=Complainee.objects.filter(username=usern)
@@ -41,7 +43,10 @@ def generateToDoList(request):
         context= {"form":form}
         return render(request, 'login/print_tasks.html',context)
     else:
-        return redirect('http://127.0.0.1:8000/login/')
+        if(request.user.is_authenticated()):
+            return  redirect('http://127.0.0.1:8000/login/main/')
+        else:
+            return redirect('http://127.0.0.1:8000/login/')
 
 def main(request):
     if request.user.is_authenticated() and request.user.is_superuser:
@@ -107,7 +112,7 @@ def flushComplaint(request):
     if request.user.is_authenticated() and request.user.is_superuser:
         today=datetime.today().date()
         targetday=today - timedelta(days=7)
-        Complaint.objects.filter(status ="Closed").filter(lodge_date__lte=targetday).delete()
+        Complaint.objects.filter(status ="Closed").filter(addressing_date__lte=targetday).delete()
         return redirect('http://127.0.0.1:8000/login/complaints')
     else:
         return redirect('http://127.0.0.1:8000/login/')
@@ -161,7 +166,7 @@ def updateStatus(request , offset):
     if request.user.is_authenticated():
         instance=get_object_or_404(Complaint,id=offset)
         form=UpdateComplaint_staffForm(request.POST or None)
-        if form.is_valid():
+        if form != None and form.is_valid():
             instance.status = request.POST['status']
             instance.addressing_date=request.POST['addressing_date']
             instance.save()
